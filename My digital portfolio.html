@@ -1,0 +1,323 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chandrahari S | Portfolio</title>
+  <meta name="description" content="Portfolio of Chandrahari S (Information Technology). Skills: C, C++, Python, HTML, CSS, JavaScript. Projects include a digital portfolio; designed layouts using Canva; version control with GitHub." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1220;            /* deep slate */
+      --panel: #121a2a;         /* panel background */
+      --text: #e7ecf3;          /* base text */
+      --muted: #9fb3c8;         /* secondary text */
+      --brand: #4f8cff;         /* accent */
+      --brand-2: #7cf0ff;       /* secondary accent */
+      --ok: #32d583;
+      --chip: rgba(127, 186, 255, 0.12);
+      --ring: rgba(79, 140, 255, .35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 90% -10%, rgba(124,240,255,.08), transparent 60%),
+                  radial-gradient(1000px 500px at -10% 10%, rgba(79,140,255,.08), transparent 60%),
+                  var(--bg);
+      color:var(--text); line-height:1.6; letter-spacing:.2px;
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{width:min(1100px, 92vw); margin-inline:auto}/* Skip link */
+.skip-link{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+.skip-link:focus{left:1rem; top:1rem; width:auto; height:auto; background:#fff; color:#000; padding:.5rem .75rem; border-radius:.5rem}
+
+/* Header */
+header{position:sticky; top:0; backdrop-filter:saturate(180%) blur(8px); background:rgba(11,18,32,.6); border-bottom:1px solid rgba(255,255,255,.06); z-index:10}
+.nav{display:flex; align-items:center; justify-content:space-between; padding: .9rem 0}
+.brand{display:flex; align-items:center; gap:.75rem}
+.logo{display:grid; place-items:center; width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#081120; font-weight:800; box-shadow:var(--shadow)}
+.brand h1{font-size:1.1rem; margin:0}
+nav ul{display:flex; gap:1rem; list-style:none; padding:0; margin:0}
+nav a{padding:.5rem .75rem; border-radius:.6rem}
+nav a:hover{background:rgba(255,255,255,.06); text-decoration:none}
+.nav-actions{display:flex; align-items:center; gap:.5rem}
+.btn{display:inline-flex; align-items:center; gap:.5rem; background:linear-gradient(180deg, rgba(79,140,255,.15), rgba(79,140,255,.05));
+     border:1px solid rgba(255,255,255,.12); color:var(--text); padding:.6rem .9rem; border-radius:.8rem; text-decoration:none; font-weight:600; box-shadow:var(--shadow)}
+.btn:hover{border-color:rgba(255,255,255,.25)}
+.btn.primary{background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#071018}
+
+.hamburger{display:none; background:none; border:none; color:var(--text); font-size:1.4rem}
+
+/* Hero */
+.hero{padding: 72px 0 40px;}
+.hero-grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:2rem; align-items:center}
+.tag{display:inline-flex; align-items:center; gap:.5rem; font-weight:600; color:var(--brand-2); background:rgba(124,240,255,.12); border:1px solid rgba(124,240,255,.4); padding:.35rem .6rem; border-radius:999px}
+.hero h2{font-size:clamp(2rem, 4vw, 3rem); line-height:1.15; margin:.6rem 0}
+.meta{color:var(--muted)}
+.cta{display:flex; gap:.8rem; flex-wrap:wrap; margin-top:1rem}
+.card{background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:18px; box-shadow:var(--shadow)}
+.hero .card{padding:1rem}
+.quick{display:grid; grid-template-columns: 1fr 1fr; gap:.6rem; margin-top:.6rem}
+.quick div{padding:.75rem; border-radius:12px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06)}
+
+.avatar{aspect-ratio:1; width:min(320px, 70%); border-radius:24px; margin:0 auto; background:
+  radial-gradient(80% 90% at 120% -10%, rgba(79,140,255,.35), transparent 60%),
+  radial-gradient(70% 80% at -10% 120%, rgba(124,240,255,.3), transparent 60%),
+  linear-gradient(135deg, #18243a, #0d1626); border:1px solid rgba(255,255,255,.08); display:grid; place-items:center; font-size:4rem; font-weight:800}
+
+/* Sections */
+section{padding: 28px 0}
+.section-title{font-size:1.6rem; margin:0 0 .8rem}
+.section-sub{color:var(--muted); margin:0 0 1.2rem}
+
+/* About */
+.about p{margin:.5rem 0}
+
+/* Skills */
+.skills-list{display:flex; flex-wrap:wrap; gap:.6rem}
+.chip{display:inline-flex; align-items:center; gap:.45rem; padding:.5rem .7rem; border-radius:999px; background:var(--chip); border:1px solid rgba(127,186,255,.35); font-weight:600}
+.chip small{opacity:.8; font-weight:500}
+
+/* Projects */
+.projects{display:grid; grid-template-columns: repeat(12, 1fr); gap:1rem}
+.project{grid-column: span 12; display:grid; grid-template-columns: 1fr 1fr; gap:1rem; padding:1rem}
+.project .thumb{min-height:180px; border-radius:14px; background:linear-gradient(135deg, rgba(79,140,255,.25), rgba(124,240,255,.2)), url('https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat; border:1px solid rgba(255,255,255,.1)}
+.project h3{margin:.2rem 0}
+.project p{color:var(--muted)}
+.pill{display:inline-flex; gap:.4rem; align-items:center; padding:.35rem .6rem; border:1px solid rgba(255,255,255,.16); border-radius:999px; font-size:.85rem}
+.project .actions{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.6rem}
+
+/* Contact */
+.contact-grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:1rem}
+.contact-card{padding:1rem}
+.contact-item{display:flex; gap:.7rem; align-items:flex-start; padding:.55rem .65rem; border-radius:12px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06)}
+.contact-item b{display:block}
+form{display:grid; gap:.6rem}
+input, textarea{width:100%; background:#0a1322; color:var(--text); border:1px solid rgba(255,255,255,.16); padding:.7rem .75rem; border-radius:.7rem; outline: none}
+input:focus, textarea:focus{border-color:var(--brand); box-shadow:0 0 0 4px var(--ring)}
+
+footer{padding: 28px 0 48px; color:var(--muted)}
+
+/* Responsive */
+@media (max-width: 900px){
+  .hero-grid{grid-template-columns: 1fr; text-align:center}
+  .quick{grid-template-columns:1fr 1fr}
+  .projects .project{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media (max-width: 640px){
+  nav ul{display:none}
+  .hamburger{display:block}
+}
+
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">CS</div>
+        <h1>Chandrahari S</h1>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn" href="#" id="theme-toggle" aria-label="Toggle theme">Theme</a>
+        <button class="hamburger" id="menuBtn" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>  <main id="main" class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="tag">Information Technology — Register No: 24BIT226</span>
+          <h2>Hi, I’m <span style="color:var(--brand-2)">Chandrahari</span>. I build clean, responsive web interfaces.</h2>
+          <p class="meta">Passionate about writing efficient code and crafting user‑friendly experiences. Comfortable across the stack from HTML/CSS/JS to C, C++ and Python.</p>
+          <div class="cta">
+            <a class="btn primary" href="#projects">View My Work</a>
+            <a class="btn" href="mailto:chandrahari2501@gmail.com?subject=Hello%20Chandrahari">Contact Me</a>
+          </div>
+          <div class="card" style="margin-top:1rem">
+            <div class="quick">
+              <div><b>Department</b><br><span class="meta">Information Technology</span></div>
+              <div><b>Register No</b><br><span class="meta">24BIT226</span></div>
+              <div><b>Phone</b><br><a href="tel:+919345734252">+91 93457 34252</a></div>
+              <div><b>Email</b><br><a href="mailto:chandrahari2501@gmail.com">chandrahari2501@gmail.com</a></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="avatar" aria-label="Abstract avatar">CH</div>
+        </div>
+      </div>
+    </section><!-- ABOUT -->
+<section id="about" class="about">
+  <h3 class="section-title">About</h3>
+  <p>I’m an aspiring developer with a strong foundation in programming and front‑end web development. I enjoy turning ideas into interactive, accessible interfaces and documenting clean, maintainable code.</p>
+  <p>Recently, I created a <b>digital portfolio</b> using HTML, CSS, and JavaScript, designed visual assets in <b>Canva</b>, and managed version control using <b>GitHub</b>.</p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h3 class="section-title">Skills</h3>
+  <p class="section-sub">Core languages & tools I’ve been working with recently.</p>
+  <div class="skills-list">
+    <span class="chip">C <small>programming</small></span>
+    <span class="chip">C++ <small>programming</small></span>
+    <span class="chip">Python <small>programming</small></span>
+    <span class="chip">HTML</span>
+    <span class="chip">CSS</span>
+    <span class="chip">JavaScript</span>
+    <span class="chip">Canva</span>
+    <span class="chip">Git & GitHub</span>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h3 class="section-title">Projects</h3>
+  <div class="projects">
+    <article class="project card">
+      <div class="thumb" role="img" aria-label="Screenshot placeholder for Digital Portfolio project"></div>
+      <div>
+        <h3>Digital Portfolio</h3>
+        <p>A responsive personal website built with semantic <b>HTML</b>, modern <b>CSS</b> (flex/grid), and vanilla <b>JavaScript</b>. Includes a clean layout, mobile‑first design, and accessible components. Designed hero and section visuals using <b>Canva</b>. Source code tracked with <b>GitHub</b>.</p>
+        <div class="skills-list" style="margin:.4rem 0 0">
+          <span class="pill">HTML</span>
+          <span class="pill">CSS Grid</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">Canva</span>
+          <span class="pill">GitHub</span>
+        </div>
+        <div class="actions">
+          <a class="btn" href="#" aria-label="Live Demo coming soon">Live Demo</a>
+          <a class="btn" href="#" aria-label="Source Code coming soon">Source Code</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h3 class="section-title">Contact</h3>
+  <p class="section-sub">I’m open to internships and freelance projects. Let’s build something!</p>
+  <div class="contact-grid">
+    <div class="card contact-card">
+      <div class="contact-item"><div>📧</div><div><b>Email</b><a href="mailto:chandrahari2501@gmail.com">chandrahari2501@gmail.com</a></div></div>
+      <div class="contact-item"><div>📱</div><div><b>Phone</b><a href="tel:+919345734252">+91 93457 34252</a></div></div>
+      <div class="contact-item"><div>💼</div><div><b>GitHub</b><a href="#" aria-label="GitHub profile placeholder">Add your GitHub URL</a></div></div>
+      <div class="contact-item"><div>🌐</div><div><b>Portfolio</b><a href="#" aria-label="Portfolio link placeholder">Add live site link</a></div></div>
+    </div>
+    <div class="card contact-card">
+      <form id="contactForm" aria-label="Quick contact form">
+        <label>
+          <span>Name</span>
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          <span>Message</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button class="btn primary" type="submit">Send Message</button>
+        <small class="meta">This form opens your email app using <code>mailto:</code>. Replace with your preferred backend or Formspree when you’re ready.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+  </main>  <footer>
+    <div class="container">
+      <hr style="border-color:rgba(255,255,255,.08); border-style:solid; border-width:1px 0 0; margin: 1rem 0 1.2rem"/>
+      <div style="display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap">
+        <span>© <span id="year"></span> Chandrahari S. All rights reserved.</span>
+        <span class="meta">Built with HTML • CSS • JavaScript</span>
+      </div>
+    </div>
+  </footer>  <script>
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear()
+
+    // mobile nav (basic)
+    const menuBtn = document.getElementById('menuBtn')
+    const nav = document.querySelector('nav ul')
+    menuBtn && menuBtn.addEventListener('click', () => {
+      const open = getComputedStyle(nav).display !== 'none'
+      nav.style.display = open ? 'none' : 'flex'
+    })
+
+    // theme toggle (light/dark)
+    const toggle = document.getElementById('theme-toggle')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const savedTheme = localStorage.getItem('theme')
+    const setTheme = (mode) => {
+      if(mode === 'light'){
+        document.documentElement.style.setProperty('--bg', '#f6f8fc')
+        document.documentElement.style.setProperty('--panel', '#ffffff')
+        document.documentElement.style.setProperty('--text', '#0c1020')
+        document.documentElement.style.setProperty('--muted', '#475569')
+        document.body.style.background = 'radial-gradient(1200px 600px at 90% -10%, rgba(79,140,255,.15), transparent 60%), radial-gradient(1000px 500px at -10% 10%, rgba(124,240,255,.12), transparent 60%), #f6f8fc'
+      } else {
+        document.documentElement.style.setProperty('--bg', '#0b1220')
+        document.documentElement.style.setProperty('--panel', '#121a2a')
+        document.documentElement.style.setProperty('--text', '#e7ecf3')
+        document.documentElement.style.setProperty('--muted', '#9fb3c8')
+        document.body.style.background = 'radial-gradient(1200px 600px at 90% -10%, rgba(124,240,255,.08), transparent 60%), radial-gradient(1000px 500px at -10% 10%, rgba(79,140,255,.08), transparent 60%), #0b1220'
+      }
+    }
+    setTheme(savedTheme ?? (prefersDark ? 'dark' : 'light'))
+    toggle?.addEventListener('click', () => {
+      const current = (document.documentElement.style.getPropertyValue('--bg') || '#0b1220') === '#0b1220' ? 'dark' : 'light'
+      const next = current === 'dark' ? 'light' : 'dark'
+      setTheme(next)
+      localStorage.setItem('theme', next)
+    })
+
+    // contact form -> mailto
+    const contactForm = document.getElementById('contactForm')
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const data = new FormData(contactForm)
+      const name = encodeURIComponent(data.get('name'))
+      const email = encodeURIComponent(data.get('email'))
+      const message = encodeURIComponent(data.get('message'))
+      const subject = `Portfolio Inquiry from ${name}`
+      const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`
+      window.location.href = `mailto:chandrahari2501@gmail.com?subject=${subject}&body=${body}`
+      contactForm.reset()
+    })
+  </script></body>
+</html>
+<form action="https://formspree.io/f/yourID" method="POST">
+  <label>
+    Name
+    <input type="text" name="name" required>
+  </label>
+  <label>
+    Email
+    <input type="email" name="email" required>
+  </label>
+  <label>
+    Message
+    <textarea name="message" rows="5" required></textarea>
+  </label>
+  <button class="btn primary" type="submit">Send Message</button>
+</form>
