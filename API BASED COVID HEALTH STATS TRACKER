@@ -1,0 +1,204 @@
+import React, { useState, useEffect } from "react";
+
+function App() {
+  const [country, setCountry] = useState("India");
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const fetchCovidData = async (countryName) => {
+    try {
+      setLoading(true);
+      setError("");
+
+      const response = await fetch(
+        `https://disease.sh/v3/covid-19/countries/${countryName}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Country not found");
+      }
+
+      const result = await response.json();
+      setData(result);
+    } catch (err) {
+      setError(err.message);
+      setData(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCovidData("India");
+  }, []);
+
+  const recoveryRate =
+    data && data.cases
+      ? ((data.recovered / data.cases) * 100).toFixed(2)
+      : 0;
+
+  return (
+    <div style={styles.container}>
+      <h1 style={styles.heading}>
+        🦠 COVID-19 Health Analytics Dashboard
+      </h1>
+
+      <div style={styles.searchBox}>
+        <input
+          type="text"
+          placeholder="Enter Country Name"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+          style={styles.input}
+        />
+
+        <button
+          style={styles.button}
+          onClick={() => fetchCovidData(country)}
+        >
+          Search
+        </button>
+      </div>
+
+      {loading && <h2>Loading...</h2>}
+
+      {error && (
+        <h2 style={{ color: "#ff4d4d" }}>
+          {error}
+        </h2>
+      )}
+
+      {data && (
+        <>
+          <div style={styles.countrySection}>
+            <img
+              src={data.countryInfo.flag}
+              alt={data.country}
+              style={styles.flag}
+            />
+
+            <h2>{data.country}</h2>
+          </div>
+
+          <div style={styles.dashboard}>
+            <div style={{ ...styles.card, borderTop: "5px solid #00e5ff" }}>
+              <h3>Total Cases</h3>
+              <p>{data.cases.toLocaleString()}</p>
+            </div>
+
+            <div style={{ ...styles.card, borderTop: "5px solid #00e676" }}>
+              <h3>Recovered</h3>
+              <p>{data.recovered.toLocaleString()}</p>
+            </div>
+
+            <div style={{ ...styles.card, borderTop: "5px solid #ff1744" }}>
+              <h3>Deaths</h3>
+              <p>{data.deaths.toLocaleString()}</p>
+            </div>
+
+            <div style={{ ...styles.card, borderTop: "5px solid #ffea00" }}>
+              <h3>Active Cases</h3>
+              <p>{data.active.toLocaleString()}</p>
+            </div>
+
+            <div style={{ ...styles.card, borderTop: "5px solid #ff9100" }}>
+              <h3>Tests</h3>
+              <p>{data.tests.toLocaleString()}</p>
+            </div>
+
+            <div style={{ ...styles.card, borderTop: "5px solid #7c4dff" }}>
+              <h3>Population</h3>
+              <p>{data.population.toLocaleString()}</p>
+            </div>
+
+            <div style={{ ...styles.card, borderTop: "5px solid #00c853" }}>
+              <h3>Recovery Rate</h3>
+              <p>{recoveryRate}%</p>
+            </div>
+          </div>
+
+          {data.active > 100000 && (
+            <div style={styles.alert}>
+              ⚠ HIGH RISK COUNTRY ALERT
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    minHeight: "100vh",
+    padding: "30px",
+    textAlign: "center",
+    color: "white",
+    background:
+      "linear-gradient(135deg,#667eea,#764ba2,#6dd5ed)",
+    fontFamily: "Segoe UI, sans-serif",
+  },
+
+  heading: {
+    marginBottom: "25px",
+    fontSize: "40px",
+  },
+
+  searchBox: {
+    marginBottom: "30px",
+  },
+
+  input: {
+    width: "300px",
+    padding: "14px",
+    borderRadius: "12px",
+    border: "none",
+    outline: "none",
+    marginRight: "10px",
+  },
+
+  button: {
+    padding: "14px 25px",
+    borderRadius: "12px",
+    border: "none",
+    background: "#00e676",
+    cursor: "pointer",
+    fontWeight: "bold",
+  },
+
+  countrySection: {
+    marginBottom: "20px",
+  },
+
+  flag: {
+    width: "120px",
+    borderRadius: "10px",
+  },
+
+  dashboard: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))",
+    gap: "20px",
+    marginTop: "25px",
+  },
+
+  card: {
+    background: "rgba(255,255,255,0.15)",
+    backdropFilter: "blur(10px)",
+    borderRadius: "20px",
+    padding: "25px",
+    boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
+  },
+
+  alert: {
+    marginTop: "25px",
+    background: "#ff1744",
+    padding: "15px",
+    borderRadius: "12px",
+    fontWeight: "bold",
+    fontSize: "20px",
+  },
+};
+
+export default App;
